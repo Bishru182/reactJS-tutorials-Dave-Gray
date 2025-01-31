@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const name= "dave"/* variable declaration */
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <p>{name}</p>{/* this is how expression with a value is used */}
       </header>
     </div>
   );
