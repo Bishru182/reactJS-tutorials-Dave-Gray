@@ -10,11 +10,26 @@ const Content = () => {
                                                      SO THE OUTPUT => 0,1,2  */
         return names[int]; 
       }
+
+      const handleClick =() => {
+        console.log('you clicked it');
+      }
+
+      const handleClick2 =(name) => {
+        console.log(`${name} was clicked`);/* use backticks here */
+      }
+      const handleClick3 =(e) => {
+        console.log(e.target.innerText);
+      }
+
   return (
     <main>
         <p>
             Hello {handleNameChange()}
         </p>
+        <button onClick={handleClick}>click it</button>
+        <button onClick={() => handleClick2('Dave')}>click it</button>
+        <button onClick={(e) => handleClick3(e)}>click it</button>
     </main>
   )
 }
