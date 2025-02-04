@@ -1,6 +1,8 @@
 import React from 'react'
+import { useState } from 'react';
 
 const Content = () => {
+  const [name,setName] = useState ('dave');
     const handleNameChange = () => {
         const names = ['bob', 'kevin', 'dave'];
         const int = Math.floor(Math.random() * 3); /*  math.random=>produces random decimal numbers eg
@@ -8,7 +10,7 @@ const Content = () => {
                                                      math.random()*3 => decimal numbers produced are multiplied by 3....therefore 0.0000to 2.999
                                                      math.floor => above generated numbers will be round off to the nearest whole number
                                                      SO THE OUTPUT => 0,1,2  */
-        return names[int]; 
+        setName(names[int]); 
       }
 
       const handleClick =() => {
@@ -25,9 +27,9 @@ const Content = () => {
   return (
     <main>
         <p onDoubleClick={handleClick}>
-            Hello {handleNameChange()}
+            Hello {name}!
         </p>
-        <button onClick={handleClick}>click it</button>
+        <button onClick={handleNameChange}>change name</button>
         <button onClick={() => handleClick2('Dave')}>click it</button>
         <button onClick={(e) => handleClick3(e)}>click it</button>
     </main>
