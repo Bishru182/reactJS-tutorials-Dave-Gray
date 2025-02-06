@@ -1,37 +1,46 @@
 import React from 'react'
 import { useState } from 'react';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const Content = () => {
-  const [name,setName] = useState ('dave');
-    const handleNameChange = () => {
-        const names = ['bob', 'kevin', 'dave'];
-        const int = Math.floor(Math.random() * 3); /*  math.random=>produces random decimal numbers eg
-                                                    eg;0.00 to 0.99999
-                                                     math.random()*3 => decimal numbers produced are multiplied by 3....therefore 0.0000to 2.999
-                                                     math.floor => above generated numbers will be round off to the nearest whole number
-                                                     SO THE OUTPUT => 0,1,2  */
-        setName(names[int]); 
-      }
+  const [items,setItems] = useState ([
+    {
+      id:1,
+      checked: false,
+      item: "1 kg rice"
+    },
+    { id:2,
+      checked: false,
+      item: "item 2"
+    },
+    {
+      id:3,
+      checked: false,
+      item: "item 3"
+    }
 
-      const handleClick =() => {
-        console.log('you clicked it');
-      }
-
-      const handleClick2 =(name) => {
-        console.log(`${name} was clicked`);/* use backticks here */
-      }
-      const handleClick3 =(e) => {
-        console.log(e.target.innerText);
-      }
+  ]);
 
   return (
     <main>
-        <p onDoubleClick={handleClick}>
-            Hello {name}!
-        </p>
-        <button onClick={handleNameChange}>change name</button>
-        <button onClick={() => handleClick2('Dave')}>click it</button>
-        <button onClick={(e) => handleClick3(e)}>click it</button>
+       <ul>
+        {items.map((item) => ( 
+          <li className='item' key={item.id}>
+            <input
+              type="checkbox"
+              checked={item.checked}
+            />
+            <label>{item.item}</label>
+            <FaTrashAlt 
+                role="button" 
+                tabIndex="0"/* makes the trash icon focussable, so it gets activated by pressing ENTER OR SPACE  */
+            />
+
+          </li>
+
+        ))}
+       </ul>
+        
     </main>
   )
 }
