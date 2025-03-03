@@ -10,6 +10,8 @@ const Header = ({title}) => {
   )
 }
 
-
+Header.defaultProps ={   //component expects a prop , when it doesn't send one, it uses the default props
+  title: "Default title"
+}
 
 export default Header
