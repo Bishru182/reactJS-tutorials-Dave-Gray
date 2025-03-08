@@ -42,7 +42,9 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submitted')
+    if(!newItem)return;
+    console.log(newItem);
+    setNewItem('');
   }
   
   return (
