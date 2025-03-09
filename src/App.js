@@ -5,31 +5,26 @@ import AddItem from './AddItem';
 import {useState} from 'react';
 
 function App() {
-  const [items,setItems] = useState ([
-    {
-      id:1,
-      checked: false,
-      item: "1 kg rice"
-    },
-    { id:2,
-      checked: false,
-      item: "item 2"
-    },
-    {
-      id:3,
-      checked: false,
-      item: "item 3"
-    }
-
-  ]);
+  const [items,setItems] = useState (JSON.parse(localStorage.getItem('shoppinglist')));
 
   const [newItem, setNewItem] = useState('')
+
+  const setAndSaveItems = (newItems) => {
+    setItems(newItems);
+    localStorage.setItem('shoppinglist', JSON.stringify(newItems));
+  }
+
+  const addItem = (item) => {
+    const id = items.length ? items[items.length - 1].id + 1 : 1;
+    const myNewItem = {id, checked: false, item}
+    const listItems = [...items, myNewItem];
+    setAndSaveItems(listItems);
+   }
 
   const handleCheck =(id)=>{
     const listItems = items.map((item)=> item.id === id ?{...item,
      checked: !item.checked} : item);
-    setItems(listItems);
-    localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+     setAndSaveItems(listItems);
 
   }
 
@@ -43,7 +38,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(!newItem)return;
-    console.log(newItem);
+    addItem(newItem);
     setNewItem('');
   }
   
